@@ -1,3 +1,29 @@
+#include <vector>
+#include <map>
+#include <queue>
+#include <iostream>
+
+using namespace std;
+
+/*
+第一思路：
+
+更好的办法？：
+
+TODO：
+
+别人的思路：
+
+题型总结：
+链表操作
+*/
+
+
+//int main()
+//{
+//	Solution s;
+//}
+
 /*
 第一思路
 1、遍历 136ms n^2
@@ -6,7 +32,7 @@
 
 更好的办法?
 
-待解决问题
+todo
 map 底层实现和查询时间复杂度
 
 别人的思路
