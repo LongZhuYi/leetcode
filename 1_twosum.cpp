@@ -1,11 +1,13 @@
 /*
 第一思路
 1、遍历 136ms n^2
-2、map保存需要的另一个值 8ms n
+2、map保存需要的另一个值 8ms n,一开始是考虑了多种相同数据，其实不必考虑多个数据
 3、排序+查找 nlogn xx 忙活半天才发现排序把下标改变了，关键是还把mergeSort算法写错了。错了哪里自己看，囧~~~
 
 更好的办法?
 
+待解决问题
+map 底层实现和查询时间复杂度
 
 别人的思路
 
@@ -15,6 +17,12 @@
  */
 
 //遍历
+
+#include <vector>
+#include <map>
+
+using namespace std;
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -36,22 +44,17 @@ public:
 class Solution2 {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-    	map<int, std::vector<int>> mapNeed2IndexSet;
+    	//map<int, std::vector<int>> mapNeed2IndexSet; //原来版本，考虑多个相同数据，但是其实一遍遍历，不需要考虑这个
+		map<int, int> mapNum2Index;//改进版本
     	for(int i=0; i<nums.size(); i++)
     	{
     		auto iNeed = target-nums[i];
-    		auto iter = mapNeed2IndexSet.find( iNeed );
-    		if( iter != mapNeed2IndexSet.end() )
+    		auto iter = mapNum2Index.find( iNeed );
+    		if( iter != mapNum2Index.end() )
     		{
-    			for( auto index : iter->second )
-    			{
-    				if( index != i )
-    				{
-    					return {i, index};
-    				}
-    			}
+				return { i, iter->second };
     		}
-    		mapNeed2IndexSet[ nums[i] ].push_back( i );
+			mapNum2Index[ nums[i] ] =  i;
     	}
     	return {};
     }
